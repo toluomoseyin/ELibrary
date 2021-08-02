@@ -2,16 +2,18 @@
 @{
     Layout = "_HomeLayout";
     ViewBag.Title = "Register";
+    var returnUrl = !string.IsNullOrWhiteSpace(ViewBag.ReturnUrl) ? ViewBag.ReturnUrl : "";
 }
+
 <div class="container py-24">
     <div class="flex justify-center">
-        <div class="w-2\/4 bg-white p-6 shadow-2xl border-t-8 border-blue-600">
+        <div class="w-2\/4 bg-white p-6 shadow-2xl border-t-8 border-blue-600" style="max-width:400px">
             <div class="py-4">
                 <h2 class="text-center font-bold text-3xl antialiased tracking-wide">Register</h2>
             </div>
 
-            <form method="Post" asp-controller="Account" asp-action="Register">
-                <div asp-validation-summary="ModelOnly"></div>
+            <form method="Post" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@returnUrl">
+                <div style="font-size:10px;color:red" asp-validation-summary="All"></div>
 
                 <div class="mb-4">
                     <label asp-for="@Model.FirstName" class="label"></label>
@@ -50,19 +52,15 @@
                 <div class="flex items-center justify-between">
                     <div>
                         Already have an account?
-                        <a href="" class="hover:underline text-blue-600">Login</a>
+                        <a asp-action="Login" class="hover:underline text-blue-600">Login</a>
                     </div>
 
                 </div>
             </form>
         </div>
     </div>
+
+
 </div>
-
-
-
-
-
-
 
 

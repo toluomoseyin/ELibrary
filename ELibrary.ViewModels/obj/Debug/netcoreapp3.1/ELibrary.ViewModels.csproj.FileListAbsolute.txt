@@ -22,3 +22,15 @@ C:\Users\hp\Desktop\Apps\ElibraryApp\week-10-group-d-online-book-library\ELibrar
 C:\Users\hp\Desktop\Apps\ElibraryApp\week-10-group-d-online-book-library\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.csproj.CopyComplete
 C:\Users\hp\Desktop\Apps\ElibraryApp\week-10-group-d-online-book-library\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.dll
 C:\Users\hp\Desktop\Apps\ElibraryApp\week-10-group-d-online-book-library\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.pdb
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\bin\Debug\netcoreapp3.1\ELibrary.ViewModels.deps.json
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\bin\Debug\netcoreapp3.1\ELibrary.ViewModels.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\bin\Debug\netcoreapp3.1\ELibrary.ViewModels.pdb
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\bin\Debug\netcoreapp3.1\ELibrary.Models.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\bin\Debug\netcoreapp3.1\ELibrary.Models.pdb
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.csprojAssemblyReference.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.AssemblyInfo.cs
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.csproj.CopyComplete
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.ViewModels\obj\Debug\netcoreapp3.1\ELibrary.ViewModels.pdb

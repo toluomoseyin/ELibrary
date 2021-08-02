@@ -2887,6 +2887,20 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "ELibrary.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.WebUtilities": "2.2.0"
+        },
+        "compile": {
+          "bin/placeholder/ELibrary.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ELibrary.Common.dll": {}
+        }
+      },
       "ELibrary.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -8757,6 +8771,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "ELibrary.Common/1.0.0": {
+      "type": "project",
+      "path": "../ELibrary.Common/ELibrary.Common.csproj",
+      "msbuildProject": "../ELibrary.Common/ELibrary.Common.csproj"
+    },
     "ELibrary.Data/1.0.0": {
       "type": "project",
       "path": "../ELibrary.Data/ELibrary.Data.csproj",
@@ -8782,6 +8801,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 4.0.1",
       "CloudinaryDotNet >= 1.15.1",
+      "ELibrary.Common >= 1.0.0",
       "ELibrary.Data >= 1.0.0",
       "ELibrary.Dtos >= 1.0.0",
       "ELibrary.Models >= 1.0.0",
@@ -8799,11 +8819,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
       "projectName": "ELibrary.Core",
-      "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+      "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -8824,17 +8844,20 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
-              "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj"
+            "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj"
             },
-            "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
-              "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
+            "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj"
             },
-            "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-              "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+            "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
             },
-            "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
-              "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj"
+            "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+            },
+            "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj"
             }
           }
         }

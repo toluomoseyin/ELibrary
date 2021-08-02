@@ -13,23 +13,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-   
 
 
+    <link href="~\ELibrary\ELibrary.MVC\Views\Shared\_ValidationScriptsPartial.cshtml">
 
 
 </head>
 
 <body class="font-sans text-gray-800">
-<header>
-    <partial name="Components/_Navbar" />
-</header>
 
-<main role="main" class="pb-3">
-    @RenderBody()
-</main>
+    <header>
+        <partial name="Components/_Navbar" />
+    </header>
 
-<partial name="Components/_Footer" />
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <partial name="Components/_Footer" />
+
 </body>
-
 </html>

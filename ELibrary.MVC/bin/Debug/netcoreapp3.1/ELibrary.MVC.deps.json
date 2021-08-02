@@ -2201,6 +2201,10 @@
         }
       },
       "ELibrary.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.WebUtilities": "2.2.0"
+        },
         "runtime": {
           "ELibrary.Common.dll": {}
         },
@@ -2212,6 +2216,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "4.0.1",
           "CloudinaryDotNet": "1.15.1",
+          "ELibrary.Common": "1.0.0",
           "ELibrary.Data": "1.0.0",
           "ELibrary.Dtos": "1.0.0",
           "ELibrary.Models": "1.0.0",

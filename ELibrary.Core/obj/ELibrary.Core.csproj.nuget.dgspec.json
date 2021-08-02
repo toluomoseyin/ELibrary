@@ -1,17 +1,85 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj": {}
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
-        "projectName": "ELibrary.Core",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj",
+        "projectName": "ELibrary.Common",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.WebUtilities": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+        "projectName": "ELibrary.Core",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -32,17 +100,20 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              },
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj"
               }
             }
           }
@@ -101,14 +172,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
         "projectName": "ELibrary.Data",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\ELibrary.Data.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Data\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -129,11 +200,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
               }
             }
           }
@@ -176,14 +247,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
         "projectName": "ELibrary.Dtos",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -204,8 +275,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
               }
             }
           }
@@ -244,14 +315,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
         "projectName": "ELibrary.Models",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -312,14 +383,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
         "projectName": "ELibrary.ViewModels",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -340,8 +411,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
               }
             }
           }

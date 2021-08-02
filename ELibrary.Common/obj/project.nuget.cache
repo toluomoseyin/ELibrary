@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "J/vhp1QusmiSD7QQYTpk7VAk1kf67hU6NJhmc5W/LNUM4LQvSqJJu6GjxfV3AhuN26AP4KQZXOLSdkSPqM6c/A==",
+  "dgSpecHash": "JYd2fRErhCXEv7Qp7P5ACJ/GLWsVb2HzfMr9HranUPEe2rtPPXeDxAUkJGrtPfwaN8eSrLAvxFp/O7NmAwh+rQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Common\\ELibrary.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

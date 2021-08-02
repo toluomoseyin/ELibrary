@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ELibrary.Common.Helpers;
 using ELibrary.Data.Repositories.Implementations;
 using ELibrary.Dtos;
 using ELibrary.ViewModels;
@@ -22,8 +23,9 @@ namespace ELibrary.MVC.Controllers
 
         public async Task<IActionResult> GetAllUsers()
         {
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new HttpClient();
-            var userResponse = await httpClient.GetAsync("https://localhost:44326/api/User/all-user");
+            var userResponse = await httpClient.GetAsync($"{BASE_URL}/api/User/all-user");
             var deserializedUserResponseObject = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetUserDto>>>(await userResponse.Content.ReadAsStringAsync());
             var deserializedUserResponse = deserializedUserResponseObject.Data;
             var users = _mapper.Map<List<UserViewModel>>(deserializedUserResponse);
@@ -48,8 +50,9 @@ namespace ELibrary.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete([FromQuery] string userId)
         {
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new HttpClient();
-            var baseUrl = "https://localhost:44326/api/User/" + userId;
+            var baseUrl = BASE_URL+"/api/User/" + userId;
 
             var response = await httpClient.DeleteAsync(baseUrl);
            

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1vIlYhq57Vp5OeKQ8lsFokSJMj3gq0OSSsK46OFq8R21shLy7pAKvkeCRUi2P9ZtnLAUrLQOtI5OkyNy11qE5w==",
+  "dgSpecHash": "KwWcrAYV6hfiHxAldmdcl9BAsKRzADB6sQ7oynHUy43Mr0sx0vIxQZFEeU3hkW8XAPytD3esOG6/2LiMM8Exhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Dtos\\ELibrary.Dtos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.15\\microsoft.aspnetcore.cryptography.internal.3.1.15.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.15\\microsoft.aspnetcore.cryptography.keyderivation.3.1.15.nupkg.sha512",

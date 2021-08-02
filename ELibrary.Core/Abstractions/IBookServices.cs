@@ -7,7 +7,7 @@ namespace ELibrary.Core.Abstractions
 {
     public interface IBookServices
     {
-        Task<ResponseDto<Pagination<GetBookDto>>> GetAll(int pageIndex);
+        ResponseDto<AllBooks> GetAll(int pageIndex = 1);
         Task<ResponseDto<bool>> DeleteById(int bookId);
         Task<ResponseDto<AddBookResponseDto>> AddBook(AddBookDto model);
         Task<ResponseDto<Book>> UpdateBook(UpdateBookDto model);
@@ -15,7 +15,7 @@ namespace ELibrary.Core.Abstractions
         Task<ResponseDto<Book>> GetBookById(string Id);
         public Task<ResponseDto<GetBookDto>> UpdatePhotoBook(AddPhotoDto photo);
         //public Task<ResponseDto<Pagination<GetBookDto>>> GetBookByCategory(string categoryName, int pageIndex);
-        public Task<ResponseDto<Pagination<GetBookDto>>> GetBookBySearchTerm(string searchTerm, string searchproperty, int pageNumber);
+        ResponseDto<AllBooks> GetBookBySearchTerm(string query, string searchProperty, int pageIndex);
 
 
     }

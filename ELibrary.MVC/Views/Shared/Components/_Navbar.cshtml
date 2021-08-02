@@ -22,11 +22,13 @@
                 @if (!string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(name))
                 {
                     <span class="inline-block px-4"> Hello @name</span>
+                    <a asp-action="Logout" asp-controller="Account">Logout</a>
                 }
                 @if (role == "Admin")
                 {
 
                     <a class="inline-block px-4 hover:underline" asp-controller="Book" asp-action="AdminBookView">Admin Dashboard</a>
+                   
                 }
             </div>
         </div>

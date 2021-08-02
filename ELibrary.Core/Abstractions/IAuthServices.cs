@@ -6,7 +6,7 @@ namespace ELibrary.Core.Abstractions
 {
     public interface IAuthServices
     {
-        Task<ResponseDto<RegisterResponseDto>> RegisterUserAsync(RegistrationDto model);
+        Task<ResponseDto<RegisterResponseDto>> RegisterUserAsync(RegistrationDto model, string baseUrl);
         Task<ResponseDto<LoginResponseDto>> LoginUserAsync(LoginDetailDto model);
         ResponseDto<LogOutDto> Logout();
         Task<ConfirmEmailResponseDto> ConfirmEmailAsync(string userId, string token);

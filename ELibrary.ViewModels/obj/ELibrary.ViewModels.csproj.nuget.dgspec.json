@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {}
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
         "projectName": "ELibrary.Models",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
+    "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
         "projectName": "ELibrary.ViewModels",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\ELibrary.ViewModels.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -100,8 +100,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
+              "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Models\\ELibrary.Models.csproj"
               }
             }
           }

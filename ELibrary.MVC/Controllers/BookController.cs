@@ -14,31 +14,27 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ELibrary.MVC.Controllers
 {
     public class BookController : Controller
     {
-        private const string BASE_URL = "https://localhost:44326/api/book/";
+       
         private readonly IMapper _mapper;
 
         public BookController(IMapper mapper)
         {
             _mapper = mapper;
         }
-
-
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         public async Task<IActionResult> BookDetail(int bookId)
         {
             var token = HttpContext.Session.GetString("Token");
-
-            if (token == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
             var client = new ApiHttpClient(token);
-            var url = BASE_URL + bookId;
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var url = BASE_URL +"/api/book/" + bookId;
 
             var res = await client.Client.GetAsync(url);
 
@@ -73,15 +69,15 @@ namespace ELibrary.MVC.Controllers
                 Body = addReviewModel.Body,
                 AppUserId = userId
             };
-
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44326/");
+            client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var jsonRsult = JsonConvert.SerializeObject(reviewDto);
             var stringContent = new StringContent(jsonRsult, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("api/review/AddReview", stringContent).ConfigureAwait(false);
+            var response = await client.PostAsync("/api/review/AddReview", stringContent).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
@@ -97,20 +93,17 @@ namespace ELibrary.MVC.Controllers
 
         public async Task<IActionResult> AdminBookView(int? pageIndex=1)
         {
-
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new ApiHttpClient();
-            var bookResponse = await httpClient.Client.GetAsync("https://localhost:44326/api/Book/?pageIndex="+pageIndex);
+            var bookResponse = await httpClient.Client.GetAsync($"{BASE_URL}/api/Book/?pageIndex="+pageIndex);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             };
-            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetBookDto>>>(await bookResponse.Content.ReadAsStringAsync());
+            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<AllBooks>>(await bookResponse.Content.ReadAsStringAsync());
             var booksAndPagination = new AllBooksAndPaginationViewModel();
-            booksAndPagination.HasNext = deserializedBookResponseObject.Next;
-            booksAndPagination.HasPrevious = deserializedBookResponseObject.Prev;
-            booksAndPagination.PageIndex = deserializedBookResponseObject.PageIndex;
             var deserializedBookResponse = deserializedBookResponseObject.Data;
-            foreach (var bookDto in deserializedBookResponse)
+            foreach (var bookDto in deserializedBookResponse.books)
             {
                 
 
@@ -173,12 +166,13 @@ namespace ELibrary.MVC.Controllers
 
                     }
                 }
+                var BASE_URL = UrlHelper.BaseAddress(HttpContext);
                 var client = new HttpClient();
-                client.BaseAddress = new Uri("https://localhost:44326/");
+                client.BaseAddress = new Uri(BASE_URL);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var stringContent = new StringContent(JsonConvert.SerializeObject(addBookDto), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("api/Book/AddBook", stringContent).ConfigureAwait(false);
+                var response = await client.PostAsync("/api/Book/AddBook", stringContent).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
                 var resultFromApi = await response.Content.ReadAsStringAsync();
@@ -212,8 +206,9 @@ namespace ELibrary.MVC.Controllers
 
         public async Task<List<CategoryOptionViewModel>> GetCategory()
         {
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new ApiHttpClient();
-            var bookResponse = await httpClient.Client.GetAsync("https://localhost:44326/api/Category/");
+            var bookResponse = await httpClient.Client.GetAsync($"{BASE_URL}/api/Category/");
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -236,8 +231,9 @@ namespace ELibrary.MVC.Controllers
         [HttpGet]
         public async  Task<IActionResult> Edit(int id)
         {
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new ApiHttpClient();
-            var bookResponse = await httpClient.Client.GetAsync("https://localhost:44326/api/book/"+id);
+            var bookResponse = await httpClient.Client.GetAsync($"{BASE_URL}/api/book/"+id);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -272,29 +268,36 @@ namespace ELibrary.MVC.Controllers
                 
 
             };
-
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44326/");
+            client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var stringContent = new StringContent(JsonConvert.SerializeObject(book), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/Book/UpdateBook", stringContent).ConfigureAwait(false);
+            var response = await client.PostAsync("/api/Book/UpdateBook", stringContent).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
 
             var resultFromApi = await response.Content.ReadAsStringAsync();
             var book1 = JsonConvert.DeserializeObject<ResponseDto<GetBookDto>>(resultFromApi);
 
-
             using (var memoryStream = new MemoryStream())
             {
                 //Get the file stream from the multiform
-                model.PhotoFile.CopyToAsync(memoryStream).GetAwaiter().GetResult();
+                if (model.PhotoFile.Length > 1)
+                {
+                    model.PhotoFile.CopyToAsync(memoryStream).GetAwaiter().GetResult();
+                }
+                
                 var form = new MultipartFormDataContent();
                 var fileContent = new ByteArrayContent(memoryStream.ToArray());
                 fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-                form.Add(fileContent, nameof(model.PhotoFile), model.PhotoFile.FileName);
+                if (model.PhotoFile.Length > 1)
+                {
+                    form.Add(fileContent, nameof(model.PhotoFile), model.PhotoFile.FileName);
+                }
+                
                 form.Add(new StringContent("" + book1.Data.Id), nameof(book1.Data.Id));
-                var response1 = await client.PatchAsync("https://localhost:44326/api/Book/Update", form);
+                var response1 = await client.PatchAsync($"{BASE_URL}/api/Book/Update", form);
                 if (response1.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminBookView", "Book");
@@ -311,8 +314,9 @@ namespace ELibrary.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var httpClient = new HttpClient();
-            var baseUrl = "https://localhost:44326/api/Book/delete/" +id;
+            var baseUrl = $"{BASE_URL}/api/Book/delete/" +id;
 
             var response = await httpClient.DeleteAsync(baseUrl);
 

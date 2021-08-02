@@ -22,97 +22,94 @@ namespace ELibrary.Core.Implementations
             _config = config;
         }
 
-        public async Task<ResponseDto<Pagination<GetBookDto>>> GetByCategory(string CategoryName, int pageIndex=1)
+        public ResponseDto<AllBooks> GetByCategory(string CategoryName, int pageIndex=1)
         {
+           
+           
+                
 
             var books = _bookRepo.GetByCategoryName(CategoryName);
 
             if (books == null)
             {
-                return new ResponseDto<Pagination<GetBookDto>>
+                var response1 = new ResponseDto<AllBooks>
                 {
                     Data = null,
-                    Message = "Not found",
+                    Success = true,
                     StatusCode = 404,
-                    Success = false,
+
                 };
             }
 
             var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-            var pageSize = int.Parse(_config.GetSection("PageSize:Default").Value);
-            var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, pageSize);
+            var books1 = new AllBooks { books = bookDto.ToList() };
+          
 
-            var response = new ResponseDto<Pagination<GetBookDto>>
+            var response = new ResponseDto<AllBooks>
             {
-                Data = paginatedResult,
-                StatusCode = 200,
+                Data = books1,
                 Success = true,
-                Prev = paginatedResult.HasPreviousPage,
-                Next = paginatedResult.HasNextPage
+                StatusCode = 200,
+
             };
 
             return response;
         }
 
-        public async Task<ResponseDto<Pagination<GetBookDto>>> SortByDate(int pageIndex = 1)
+        public ResponseDto<AllBooks> SortByDate(int pageIndex = 1)
         {
-            var books = _bookRepo.GetAll().OrderByDescending(e => e.PublishedDate).Take(8);
+            var books = _bookRepo.Get().OrderByDescending(e => e.PublishedDate).Take(8);
 
             if (books == null)
             {
-                return new ResponseDto<Pagination<GetBookDto>>
+                var response1 = new ResponseDto<AllBooks>
                 {
                     Data = null,
-                    Message = "Not found",
+                    Success = true,
                     StatusCode = 404,
-                    Success = false,
+
                 };
             }
 
             var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-            var pageSize = int.Parse(_config.GetSection("PageSize:Default").Value);
-            var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, pageSize);
+            var books1 = new AllBooks { books = bookDto.ToList() };
 
-            var response = new ResponseDto<Pagination<GetBookDto>>
+            var response = new ResponseDto<AllBooks>
             {
-                Data = paginatedResult,
-                StatusCode = 200,
+                Data = books1,
                 Success = true,
-                Prev = paginatedResult.HasPreviousPage,
-                Next = paginatedResult.HasNextPage
+                StatusCode = 200,
+
             };
 
             return response;
         }
 
 
-        public async Task<ResponseDto<Pagination<GetBookDto>>> SortByViews(int pageIndex = 1)
+        public ResponseDto<AllBooks> SortByViews(int pageIndex = 1)
         {
 
-            var books = _bookRepo.GetAll().OrderByDescending(e => e.Views).Take(8);
-
+            var books = _bookRepo.Get().OrderByDescending(e => e.Views).Take(8);
             if (books == null)
             {
-                return new ResponseDto<Pagination<GetBookDto>>
+                var response1 = new ResponseDto<AllBooks>
                 {
                     Data = null,
-                    Message = "Not found",
+                    Success = true,
                     StatusCode = 404,
-                    Success = false,
+
                 };
             }
 
             var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-            var pageSize = int.Parse(_config.GetSection("PageSize:Default").Value);
-            var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, pageSize);
+            var books1 = new AllBooks { books = bookDto.ToList() };
 
-            var response = new ResponseDto<Pagination<GetBookDto>>
+            var response = new ResponseDto<AllBooks>
             {
-                Data = paginatedResult,
-                StatusCode = 200,
+                Data = books1,
                 Success = true,
-                Prev = paginatedResult.HasPreviousPage,
-                Next = paginatedResult.HasNextPage
+                StatusCode = 200,
+
             };
 
             return response;

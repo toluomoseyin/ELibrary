@@ -30,9 +30,9 @@ namespace ELibrary.MVC.Controllers.ApiControllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int pageIndex=1)
+        public IActionResult GetAll([FromQuery] int pageIndex=1)
         {
-            var response = await _bookServices.GetAll(pageIndex);
+            var response = _bookServices.GetAll(pageIndex);
             if (response.Success)
                 return Ok(response);
 
@@ -118,9 +118,9 @@ namespace ELibrary.MVC.Controllers.ApiControllers
 
 
         [HttpGet("get-book-by-category")]
-        public async Task<IActionResult> GetBookByCategory([FromQuery] GetBookByCategoryDto getBook)
+        public IActionResult GetBookByCategory([FromQuery] GetBookByCategoryDto getBook)
         {
-            var result = await _bookService.GetByCategory(getBook.categoryName, getBook.pageIndex);
+            var result = _bookService.GetByCategory(getBook.categoryName, getBook.pageIndex);
             if (result != null)
             {
                 return Ok(result); // 200
@@ -140,9 +140,9 @@ namespace ELibrary.MVC.Controllers.ApiControllers
         }
 
         [HttpGet("search-for-book")]
-        public async Task<IActionResult> SearchForBook([FromQuery] SearchBookDto getBook)
+        public IActionResult SearchForBook([FromQuery] SearchBookDto getBook)
         {
-            var result = await _bookServices.GetBookBySearchTerm(getBook.SearchTerm, getBook.SearchProperty, getBook.PageIndex);
+            var result =  _bookServices.GetBookBySearchTerm(getBook.SearchTerm, getBook.SearchProperty, getBook.PageIndex);
             if (result != null)
             {
                 return Ok(result); // 200
@@ -152,9 +152,9 @@ namespace ELibrary.MVC.Controllers.ApiControllers
 
 
         [HttpGet("sort-book-by-publishedDate")]
-        public async Task<IActionResult> SortBookByPublishedDate([FromQuery] int pageIndex)
+        public IActionResult SortBookByPublishedDate([FromQuery] int pageIndex)
         {
-            var result = await _bookService.SortByDate(pageIndex);
+            var result =  _bookService.SortByDate(pageIndex);
             if (result != null)
             {
                 return Ok(result); // 200
@@ -163,9 +163,9 @@ namespace ELibrary.MVC.Controllers.ApiControllers
         }
 
         [HttpGet("sort-book-by-view")]
-        public async Task<IActionResult> SortBookByView([FromQuery] int pageIndex)
+        public IActionResult SortBookByView([FromQuery] int pageIndex)
         {
-            var result = await _bookService.SortByViews(pageIndex);
+            var result =  _bookService.SortByViews(pageIndex);
             if (result != null)
             {
                 return Ok(result); // 200

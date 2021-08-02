@@ -10,3 +10,15 @@ C:\Users\hp\Desktop\ElibraryApp\week-10-group-d-online-book-library\ELibrary.Dto
 C:\Users\hp\Desktop\ElibraryApp\week-10-group-d-online-book-library\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Models.dll
 C:\Users\hp\Desktop\ElibraryApp\week-10-group-d-online-book-library\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Models.pdb
 C:\Users\hp\Desktop\ElibraryApp\week-10-group-d-online-book-library\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.csproj.CopyComplete
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Dtos.deps.json
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Dtos.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Dtos.pdb
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Models.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\bin\Debug\netcoreapp3.1\ELibrary.Models.pdb
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.csprojAssemblyReference.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.AssemblyInfo.cs
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.csproj.CopyComplete
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.dll
+C:\Users\hp\Desktop\new\Elibrary\ELibrary\ELibrary.Dtos\obj\Debug\netcoreapp3.1\ELibrary.Dtos.pdb

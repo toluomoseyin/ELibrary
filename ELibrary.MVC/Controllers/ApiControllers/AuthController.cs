@@ -1,4 +1,5 @@
-﻿using ELibrary.Core.Abstractions;
+﻿using ELibrary.Common.Helpers;
+using ELibrary.Core.Abstractions;
 using ELibrary.Dtos;
 using ELibrary.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -26,7 +27,8 @@ namespace ELibrary.MVC.Controllers.ApiControllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _authservices.RegisterUserAsync(model);
+                var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+                var result = await _authservices.RegisterUserAsync(model,BASE_URL);
                 return Ok(result);
             }
             return BadRequest("not successful!");

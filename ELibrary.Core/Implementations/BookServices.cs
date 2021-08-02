@@ -4,6 +4,7 @@ using ELibrary.Data.Repositories.Abstractions;
 using ELibrary.Data.Repositories.Implementations;
 using ELibrary.Dtos;
 using ELibrary.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
@@ -27,21 +28,20 @@ namespace ELibrary.Core.Implementations
             _pageSize = int.Parse(config.GetSection("PageSize:Default").Value);
         }
 
-        public async Task<ResponseDto<Pagination<GetBookDto>>> GetAll(int pageIndex=1)
+        public ResponseDto<AllBooks> GetAll(int pageIndex=1)
         {
             var books = _bookRepository.Get()
                 .Select(book => _mapper.Map<GetBookDto>(book));
 
-            var paginatedBooks = await Pagination<GetBookDto>.CreateAsync(books, pageIndex, _pageSize);
+           
+            var books1 = new AllBooks { books = books.ToList() };
 
-            var response = new ResponseDto<Pagination<GetBookDto>>
+            var response = new ResponseDto<AllBooks>
             {
-                Data = paginatedBooks,
+                Data = books1,
                 Success = true,
                 StatusCode = 200,
-                Next = paginatedBooks.HasNextPage,
-                Prev = paginatedBooks.HasPreviousPage,
-                PageIndex=paginatedBooks.PageIndex
+              
             };
 
             return response;
@@ -237,12 +237,12 @@ namespace ELibrary.Core.Implementations
 
             return response;
         }
-        public async Task<ResponseDto<Pagination<GetBookDto>>> GetBookBySearchTerm(string query, string searchProperty, int pageIndex)
+        public ResponseDto<AllBooks> GetBookBySearchTerm(string query, string searchProperty, int pageIndex)
         {
 
             if (searchProperty == null || query == null)
             {
-                return new ResponseDto<Pagination<GetBookDto>>
+                return new ResponseDto<AllBooks>
                 {
                     Data = null,
                     Message = "search parameter should not be null",
@@ -252,19 +252,17 @@ namespace ELibrary.Core.Implementations
             }
             if (searchProperty == "ISBN")
             {
-                var books = _bookRepository.GetAll().Where(e => e.ISBN == query);
+                var books = _bookRepository.Get().Where(e => e.ISBN == query);
                 var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-                var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
-
-                var response = new ResponseDto<Pagination<GetBookDto>>
+                // var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
+                var books1 = new AllBooks { books = bookDto.ToList() };
+                var response = new ResponseDto<AllBooks>
                 {
-                    Data = paginatedResult,
+                    Data = books1,
                     Message = $"you have successfuly quarried books with the ISBN {searchProperty} sesrch property.",
                     StatusCode = 200,
                     Success = true,
-                    Prev = paginatedResult.HasPreviousPage,
-                    Next = paginatedResult.HasNextPage,
-                    PageIndex=paginatedResult.PageIndex
+                  
                     
                 };
 
@@ -273,36 +271,33 @@ namespace ELibrary.Core.Implementations
 
             if (searchProperty == "Title")
             {
-                var books = _bookRepository.GetAll().Where(e => e.Title.ToLower().Contains(query.ToLower()));
+                var books = _bookRepository.Get().Where(e => e.Title.ToLower().Contains(query.ToLower()));
                 var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-                var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
-
-                var response = new ResponseDto<Pagination<GetBookDto>>
+                // var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
+                var books1 = new AllBooks { books = bookDto.ToList() };
+                var response = new ResponseDto<AllBooks>
                 {
-                    Data = paginatedResult,
+                    Data = books1,
                     Message = $"you have successfuly quarried books with the Title {query} search property.",
                     StatusCode = 200,
-                    Success = true,
-                    Prev = paginatedResult.HasPreviousPage,
-                    Next = paginatedResult.HasNextPage
+                    Success = true
                 };
                 return response;
             }
 
             if (searchProperty == "Author")
             {
-                var books = _bookRepository.GetAll().Where(e => e.Author.ToLower().Contains(query.ToLower()));
+                var books = _bookRepository.Get().Where(e => e.Author.ToLower().Contains(query.ToLower()));
                 var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-                var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
-
-                var response = new ResponseDto<Pagination<GetBookDto>>
+                //var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
+                var books1 = new AllBooks { books = bookDto.ToList() };
+                var response = new ResponseDto<AllBooks>
                 {
-                    Data = paginatedResult,
+                    Data = books1,
                     Message = $"you have successfuly quarried books with the Author {query} search property.",
                     StatusCode = 200,
                     Success = true,
-                    Prev = paginatedResult.HasPreviousPage,
-                    Next = paginatedResult.HasNextPage
+                   
                 };
                 return response;
             }
@@ -311,39 +306,38 @@ namespace ELibrary.Core.Implementations
 
             if (searchProperty == "Publisher")
             {
-                var books = _bookRepository.GetAll().Where(e => e.Publisher.ToLower().Contains(query.ToLower()));
+                var books = _bookRepository.Get().Where(e => e.Publisher.ToLower().Contains(query.ToLower()));
                 var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-                var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
-
-                var response = new ResponseDto<Pagination<GetBookDto>>
+                // var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
+                var books1 = new AllBooks { books = bookDto.ToList() };
+                var response = new ResponseDto<AllBooks>
                 {
-                    Data = paginatedResult,
+                    Data = books1,
                     Message = $"you have successfuly quarried books with the Publisher {query} search property.",
                     StatusCode = 200,
                     Success = true,
-                    Prev = paginatedResult.HasPreviousPage,
-                    Next = paginatedResult.HasNextPage
+                   
                 };
                 return response;
             }
 
             if (searchProperty == "PublishedYear")
             {
-                var books = _bookRepository.GetAll().Where(e => e.PublishedDate.Year == Convert.ToDateTime(query).Year);
+                var books = _bookRepository.Get().Where(e => e.PublishedDate.Year == Convert.ToDateTime(query).Year);
                 var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-                var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
-                var response = new ResponseDto<Pagination<GetBookDto>>
+               // var paginatedResult = await Pagination<GetBookDto>.CreateAsync(bookDto, pageIndex, _pageSize);
+                var books1 = new AllBooks { books = bookDto.ToList() };
+                var response = new ResponseDto<AllBooks>
                 {
-                    Data = paginatedResult,
+                    Data = books1,
                     Message = $"you have successfuly quarried books Published in the year {Convert.ToDateTime(query).Year} search property.",
                     StatusCode = 200,
                     Success = true,
-                    Prev = paginatedResult.HasPreviousPage,
-                    Next = paginatedResult.HasNextPage
+                 
                 };
                 return response;
             }
-            return new ResponseDto<Pagination<GetBookDto>>
+            return new ResponseDto<AllBooks>
             {
                 Data = null,
                 Message = "Not found",

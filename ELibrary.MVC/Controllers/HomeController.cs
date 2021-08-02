@@ -14,22 +14,21 @@ namespace ELibrary.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private const string BASE_URL = "https://localhost:44326/api/";
+   
         private readonly ApiHttpClient _httpClient = new ApiHttpClient();
 
         public async Task<IActionResult> Index()
         {
-            var bookUrl = BASE_URL + "book";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var bookUrl = BASE_URL+"/api/" + "book";
             var bookResponse = await _httpClient.Client.GetAsync(bookUrl);
 
-            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetBookDto>>>(await bookResponse.Content.ReadAsStringAsync());
+            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<AllBooks>>(await bookResponse.Content.ReadAsStringAsync());
             var deserializedBookResponse = deserializedBookResponseObject.Data;
             var homeViewModel = new HomeViewModel();
-            homeViewModel.HasNext = deserializedBookResponse.HasNextPage;
-            homeViewModel.HasPrevious = deserializedBookResponse.HasPreviousPage;
-            homeViewModel.PageIndex = deserializedBookResponse.PageIndex;
+           
 
-            foreach (var bookDto in deserializedBookResponse)
+            foreach (var bookDto in deserializedBookResponse.books)
             {
                 var count = bookDto.Rate.Count();
                 var totalRate = 0;
@@ -67,13 +66,14 @@ namespace ELibrary.MVC.Controllers
 
         public async Task<IActionResult> GetByCategory([FromQuery] string categoryName, [FromQuery] int pageIndex=1)
         {
-            var bookUrl = BASE_URL + $"Book/get-book-by-category?categoryName={categoryName}&pageIndex={pageIndex}";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var bookUrl = BASE_URL + $"/api/Book/get-book-by-category?categoryName={categoryName}&pageIndex={pageIndex}";
             
             var homeViewModel = new HomeViewModel();
             var bookResponse = await _httpClient.Client.GetAsync(bookUrl);
-            var DeserilizedBookResponse = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetBookDto>>>(await bookResponse.Content.ReadAsStringAsync());
-            
-            foreach (var bookDto in DeserilizedBookResponse.Data)
+            var DeserilizedBookResponse = JsonConvert.DeserializeObject<ResponseDto<AllBooks>>(await bookResponse.Content.ReadAsStringAsync());
+
+            foreach (var bookDto in DeserilizedBookResponse.Data.books)
             {
                 var count = bookDto.Rate.Count();
                 var totalRate = 0;
@@ -105,15 +105,15 @@ namespace ELibrary.MVC.Controllers
             {
                 return RedirectToAction("Index");
             }
-          
 
-            var bookUrl = BASE_URL + $"Book/search-for-book?SearchTerm={searchViewModel.SearchTerm}&SearchProperty={searchViewModel.SearchProperty}&PageIndex={searchViewModel.PageIndex}";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var bookUrl = BASE_URL + $"/api/Book/search-for-book?SearchTerm={searchViewModel.SearchTerm}&SearchProperty={searchViewModel.SearchProperty}&PageIndex={searchViewModel.PageIndex}";
             
             var homeViewModel = new HomeViewModel();
             var bookResponse = await _httpClient.Client.GetAsync(bookUrl);
-            var DeserilizedBookResponse = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetBookDto>>>(await bookResponse.Content.ReadAsStringAsync());
+            var DeserilizedBookResponse = JsonConvert.DeserializeObject<ResponseDto<AllBooks>>(await bookResponse.Content.ReadAsStringAsync());
 
-            foreach (var bookDto in DeserilizedBookResponse.Data)
+            foreach (var bookDto in DeserilizedBookResponse.Data.books)
             {
                 var count = bookDto.Rate.Count();
                 var totalRate = 0;
@@ -152,7 +152,8 @@ namespace ELibrary.MVC.Controllers
 
         private async Task<List<CategoryViewModel>> GetCategories()
         {
-            var categoryUrl = BASE_URL + "category";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var categoryUrl = BASE_URL + "/api/category";
             var categoryResponse = await _httpClient.Client.GetAsync(categoryUrl);
             var DeserilizedCategoryResponse = JsonConvert.DeserializeObject<ResponseDto<IEnumerable<GetCategoryDto>>>(await categoryResponse.Content.ReadAsStringAsync());
 
@@ -174,13 +175,14 @@ namespace ELibrary.MVC.Controllers
 
         private async Task<List<BookViewModel>> GetSortedBooks(string sortUrl)
         {
-            var bookResponse = await _httpClient.Client.GetAsync(BASE_URL + sortUrl);
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var bookResponse = await _httpClient.Client.GetAsync(BASE_URL+"/api/" + sortUrl);
 
-            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<Pagination<GetBookDto>>>(await bookResponse.Content.ReadAsStringAsync());
+            var deserializedBookResponseObject = JsonConvert.DeserializeObject<ResponseDto<AllBooks>>(await bookResponse.Content.ReadAsStringAsync());
             var deserializedBookResponse = deserializedBookResponseObject.Data;
             var model = new List<BookViewModel>();
 
-            foreach (var bookDto in deserializedBookResponse)
+            foreach (var bookDto in deserializedBookResponse.books)
             {
                 var count = bookDto.Rate.Count();
                 var totalRate = 0;

@@ -16,11 +16,15 @@ namespace ELibrary.MVC.Controllers
 {
     public class AccountController : Controller
     {
-        private const string BASE_URL = "https://localhost:44326/";
 
+      
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            //if (!string.IsNullOrWhiteSpace(HttpContext.Session.GetString("Token")))
+            //    return RedirectToAction("Index", "Home");
+
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -40,7 +44,8 @@ namespace ELibrary.MVC.Controllers
             {
                 return View(model);
             }
-            var url = BASE_URL + "api/auth/login";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var url = BASE_URL + "/api/auth/login";
             var client = new ApiHttpClient();
             var postRequest = new HttpRequestMessage(HttpMethod.Post, url)
             {
@@ -48,11 +53,10 @@ namespace ELibrary.MVC.Controllers
             };
 
             var response = await client.Client.SendAsync(postRequest);
-            response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var responseObject = JsonConvert.DeserializeObject<ResponseDto<LoginResponseDto>>(content);
 
-            if (responseObject.StatusCode == 200 && !string.IsNullOrEmpty(responseObject.Data.Token))
+            if (responseObject.Success && !string.IsNullOrEmpty(responseObject.Data.Token))
             {
                 HttpContext.Session.SetString("Token", responseObject.Data.Token);
                 HttpContext.Session.SetString("UserId", responseObject.Data.UserId);
@@ -61,29 +65,26 @@ namespace ELibrary.MVC.Controllers
             }
             else
             {
-                ModelState.AddModelError("LoginError" , "Incorrect Username and Password");
+                ModelState.AddModelError("LoginError" , responseObject.Message);
                 return View(model);
             }
 
             if (!string.IsNullOrEmpty(returnUrl))
-            {
-
-                return Redirect(returnUrl);
-            }
-            else
-            {
+                return LocalRedirect(returnUrl);
+         
                 return RedirectToAction("Index", "Home");
-            }
+            
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -93,10 +94,10 @@ namespace ELibrary.MVC.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Password = model.Password,
-                    ConfirmPassword = model.ConfirmPassword,
                     Email = model.Email,
                 };
-                var url = BASE_URL + "api/auth/register";
+                var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+                var url = BASE_URL + "/api/auth/register";
                 var client = new ApiHttpClient();
                 var postRequest = new HttpRequestMessage(HttpMethod.Post, url)
                 {
@@ -104,16 +105,18 @@ namespace ELibrary.MVC.Controllers
                 };
 
                 var response = await client.Client.SendAsync(postRequest);
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
-                var responseDto = JsonConvert.DeserializeObject<RegisterViewModel>(content);
-                return RedirectToAction("ConfirmEmailModelView");
+                var responseDto = JsonConvert.DeserializeObject<ResponseDto<RegisterResponseDto>>(content);
+                if (responseDto.Success) 
+                {
+                    return RedirectToAction("RegistrationConfirmation");
+                }
+                ModelState.AddModelError("Error", responseDto.Message);
+
             }
 
-            else
-            {
-                return View(model);
-            }
+          
+            return View(model);
 
 
         }
@@ -126,23 +129,32 @@ namespace ELibrary.MVC.Controllers
                 Token = token,
                 userid = userid
             };
-
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44326/");
+            client.BaseAddress = new Uri(BASE_URL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var stringContent = new StringContent(JsonConvert.SerializeObject(confirm), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/Auth/ConfirmEmail", stringContent).ConfigureAwait(false);
+            var response = await client.PostAsync("/api/Auth/ConfirmEmail", stringContent).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
 
             var resultFromApi = await response.Content.ReadAsStringAsync();
             var book = JsonConvert.DeserializeObject<ResponseDto<ConfirmEmailResponseDto>>(resultFromApi);
             if (book.Success == true)
             {
-                return RedirectToAction("Login");
+                return View("EmailConfirmation");
             }
-            return RedirectToAction("Register");
+            ModelState.AddModelError("Error", book.Message);
+            return View("EmailConfirmation");
+           
         }
+
+        [HttpGet]
+        public IActionResult RegistrationConfirmation()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public IActionResult ConfirmEmailModelView()
@@ -153,7 +165,8 @@ namespace ELibrary.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            var url = BASE_URL + "api/auth/forget-password";
+            var BASE_URL = UrlHelper.BaseAddress(HttpContext);
+            var url = BASE_URL + "/api/auth/forget-password";
             var client = new ApiHttpClient();
             var postRequest = new HttpRequestMessage(HttpMethod.Post, url)
             {
@@ -171,6 +184,13 @@ namespace ELibrary.MVC.Controllers
         public IActionResult ForgotPassword()
         {
             return View();
+        }
+       
+        public IActionResult Logout()
+        {
+         
+            HttpContext.Session.Clear();
+            return Redirect("/Home/Index");
         }
 
     }

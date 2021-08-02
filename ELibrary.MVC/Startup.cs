@@ -53,7 +53,7 @@ namespace ELibrary.MVC
                     options.Password.RequiredLength = 5;
                     options.Password.RequireLowercase = false;
                     options.User.RequireUniqueEmail = true;
-                    //options.SignIn.RequireConfirmedEmail = true;
+                    options.SignIn.RequireConfirmedEmail = true;
 
                 }
                 ).AddEntityFrameworkStores<ELibraryDbContext>().AddDefaultTokenProviders();
@@ -85,6 +85,7 @@ namespace ELibrary.MVC
             app.UseMiddleware<ExceptionMiddleWare>();
             if (env.IsDevelopment())
             {
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -98,7 +99,6 @@ namespace ELibrary.MVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
             app.UseSession();
             app.Use(async (ctx, next) =>
             {
@@ -109,6 +109,8 @@ namespace ELibrary.MVC
                 }
                 await next();
             });
+
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -116,6 +118,11 @@ namespace ELibrary.MVC
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //  name: "details",
+                //  pattern: "{controller=Book}/{action=BookDetail}/{id}"
+                //  );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

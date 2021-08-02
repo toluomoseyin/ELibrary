@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IQIuxT4DHpvTraBBtusKNTrQ7KwLr4Kaivfy9cKq3s4WDMn+xBpyBWXVK95J5K7VN6FVd01txISOOKNeUFys+w==",
+  "dgSpecHash": "G27d+JupP3DbY8CzRdUdvQMfi4e+7GDAWNUDys0SUGGglhOV9T4jaOpEgbyDiQo/eitVEyfz0NIVEA/2fI9P7Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Desktop\\new\\Elibrary\\ELibrary\\ELibrary.Core\\ELibrary.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\automapper\\7.0.1\\automapper.7.0.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\4.0.1\\automapper.extensions.microsoft.dependencyinjection.4.0.1.nupkg.sha512",

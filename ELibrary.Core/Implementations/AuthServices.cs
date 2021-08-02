@@ -1,6 +1,8 @@
-﻿using ELibrary.Core.Abstractions;
+﻿using ELibrary.Common.Helpers;
+using ELibrary.Core.Abstractions;
 using ELibrary.Dtos;
 using ELibrary.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -46,76 +48,65 @@ namespace ELibrary.Core.Implementations
         }
 
 
-        public async Task<ResponseDto<RegisterResponseDto>> RegisterUserAsync(RegistrationDto model)
+        public async Task<ResponseDto<RegisterResponseDto>> RegisterUserAsync(RegistrationDto model,string baseUrl)
         {
-
-
-            if (model.Password != model.ConfirmPassword)
-            {
-                return new ResponseDto<RegisterResponseDto>
-                {
-                    StatusCode = 401,
-                    Success = false,
-                    Message = "Password Mismatch",
-                    Data = new RegisterResponseDto { }
-                };
-            }
-
             var appUser = new AppUser
             {
                 Email = model.Email,
                 UserName = model.Email,
-                PhoneNumber = model.PhoneNumber,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
 
             };
-
             var result = await _userManager.CreateAsync(appUser, model.Password);
-            var role = await _userManager.AddToRoleAsync(appUser, "Regular");
-
-            if (result.Succeeded && role.Succeeded)
+            if (result.Succeeded)
             {
-                var userFromDb = await _userManager.FindByEmailAsync(model.Email);
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(userFromDb);
-                var encodedEmailToken = Encoding.UTF8.GetBytes(token);
-                var vaidEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
-                string url = $"{configuration["AppUrl"]}/Account/ConfirmEmail?userid={userFromDb.Id}&token={vaidEmailToken}";
-                var email = emailServices.SendEmail(new Email
+                
+                var role = await _userManager.AddToRoleAsync(appUser, "Regular");
+                if (role.Succeeded)
                 {
-                    To = model.Email,
-                    Body = "<h1>Follow the instructions to confirm your password</h1>" +
-                $"<p>To confirm your password <a href='{url}'>Click here</a></p>"
-                });
-                if (model.PhotoFile != null)
-                {
-                    var uploadResult = cloudinary.UploadImage(model.PhotoFile);
-
-                    if (uploadResult == null)
+                    var userFromDb = await _userManager.FindByEmailAsync(model.Email);
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(userFromDb);
+                    var encodedEmailToken = Encoding.UTF8.GetBytes(token);
+                    var vaidEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
+                    string url = $"{baseUrl}/Account/ConfirmEmail?userid={userFromDb.Id}&token={vaidEmailToken}";
+                    var email = emailServices.SendEmail(new Email
                     {
-                        throw new NullReferenceException("Unable to upload Picture");
+                        To = model.Email,
+                        Body = $"<h1> Hi {userFromDb.FirstName} {userFromDb.LastName}, Please Follow the instructions to confirm your password</h1>" +
+                    $"<p>To confirm your password <a href='{url}'>Click here</a></p>"
+                    });
+                    if (email)
+                    {
+                        return new ResponseDto<RegisterResponseDto>
+                        {
+                            StatusCode = 200,
+                            Success = true,
+                            Message = "You have successfully registered and have been sent a confirmation link in  your email, Click on the link to confirm your Email",
+                            Data = new RegisterResponseDto { UserId = userFromDb.Id }
+                        };
                     }
-                    appUser.PhotoUrl = uploadResult.Result.Url.ToString();
-                    await _userManager.UpdateAsync(appUser);
+                    return new ResponseDto<RegisterResponseDto>
+                    {
+                        StatusCode = 501,
+                        Success = false,
+                        Message = "Network issues. Try again later",
+                        Data =null
+                    };
+
                 }
-                return new ResponseDto<RegisterResponseDto>
-                {
-                    StatusCode = 200,
-                    Success = true,
-                    Message = "You have successfully registered and have been sent a confirmation link in  your email, Click on the link to confirm your Email",
-                    Data = new RegisterResponseDto { UserId = userFromDb.Id }
-                };
+               
             }
             string errors = "";
             foreach (var error in result.Errors)
             {
-                errors += error.ToString() + "\n";
+                errors += error.Description.ToString() + "\n";
             }
             return new ResponseDto<RegisterResponseDto>
             {
                 StatusCode = 401,
                 Success = false,
-                Data = new RegisterResponseDto { },
+                Data = null,
                 Message = errors
             };
         }
@@ -139,25 +130,37 @@ namespace ELibrary.Core.Implementations
             var token = jwtTokenGenerator.GenerateToken(appUser.UserName, appUser.Id, appUser.Email, configuration, userRoles.ToArray());
             if (!string.IsNullOrEmpty(token))
             {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RemeberMe, true);
-                if (result.Succeeded)
+                var emailConfirmed =await _userManager.IsEmailConfirmedAsync(appUser);
+                if (emailConfirmed)
                 {
+                    var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RemeberMe, true);
+                    if (result.Succeeded)
+                    {
+                        return new ResponseDto<LoginResponseDto>
+                        {
+                            StatusCode = 200,
+                            Success = true,
+                            Message = "Login Successful!",
+                            Data = new LoginResponseDto { Email = appUser.Email, Token = token, UserId = appUser.Id, Role = userRoles[0], Name = appUser.FirstName }
+                        };
+                    }
+
                     return new ResponseDto<LoginResponseDto>
                     {
-                        StatusCode = 200,
-                        Success = true,
-                        Message = "Login Successful!",
-                        Data = new LoginResponseDto { Email = appUser.Email, Token = token, UserId = appUser.Id, Role = userRoles[0], Name = appUser.FirstName }
+                        StatusCode = 401,
+                        Success = false,
+                        Data = new LoginResponseDto { },
+                        Message = "Was not Able to Login!"
                     };
                 }
-
                 return new ResponseDto<LoginResponseDto>
                 {
                     StatusCode = 401,
                     Success = false,
                     Data = new LoginResponseDto { },
-                    Message = "Was not Able to Login!"
+                    Message = "Email not confirmed! click on the link in mail to confirm email"
                 };
+
             }
             return new ResponseDto<LoginResponseDto>
             {
