@@ -10,8 +10,7 @@ COPY ELibrary.EmailServices/*.csproj ELibrary.EmailServices/
 COPY ELibrary.Models/*.csproj ELibrary.Models/
 COPY ELibrary.MVC/*.csproj ELibrary.MVC/
 COPY ELibrary.ViewModels/*.csproj ELibrary.ViewModels/
-COPY postcss.config
-COPY tailwind.config
+COPY . .
 RUN dotnet restore
 
 COPY . .
